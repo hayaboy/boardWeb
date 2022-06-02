@@ -1,0 +1,16 @@
+package com.BoardWeb.board.persistence;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.repository.CrudRepository;
+
+import com.BoardWeb.board.domain.Board;
+
+public interface BoardRepository extends CrudRepository<Board, Long>, QuerydslPredicateExecutor<Board>{
+	
+	@Query("SELECT b FROM Board b")
+	Page<Board>  getBoardList(Pageable pageable); //페이징 처리와 정렬을 위해서 Pageable타입 객체를 매개변수로 받음
+
+}
